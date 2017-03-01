@@ -7,3 +7,19 @@ git use：
 	git commit -m "本次提交的说明"
 commit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动
 
+4.查看工作区的状态
+	git status
+nothing to commit 工作区是干净的，没有需要提交的版本
+Untracked files 未跟踪文件，文件一旦加入stage或者repository时git就可跟踪了
+changes to be commited:
+ (use "git reset HEAD <file>.." to unstage)
+暂存区有可提交到仓库的文件，如果你反悔了可以使用 git reset HEAD把暂存区的文件退回到工作区，unstage就是 undo stage 取消暂存
+
+如果你的文件提交到了暂存区，后来你又更改了工作区的文件本身，那么git status时
+会提示：changes to be commited:
+	（use "git add<file>..."to update what will be commited） 命令讲工作区文件覆盖就得暂存区
+	（use "git checkout -- <file>..." to discard changes in working directory）命令将旧的暂存区覆盖到新的工作区（危险，相当于丢弃了修改）
+5.add commit 一步到位的方法
+	在commit时加上 -a即可   git commit -a -m"..." 缩写为 git commit -am "..."
+
+	
