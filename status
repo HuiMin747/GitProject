@@ -1,0 +1,623 @@
+[1mdiff --git a/GitUse.txt b/GitUse.txt[m
+[1mindex 5f92b11..fc74e0d 100644[m
+[1m--- a/GitUse.txt[m
+[1m+++ b/GitUse.txt[m
+[36m@@ -1,22 +1,23 @@[m
+ git use：[m
+ //确定用户名和邮箱   创建一个仓库  具体命令在雨C的教程3里面[m
+[32m+[m[32m//git一直支持中文的[m
+ 1.创建一个文件放到我的gitproject库里(repository head)[m
+ 2.将文件添加到暂存区（stage index）[m
+ 	git add README.md[m
+ 3.将文件提交到Git仓库[m
+ 	git commit -m "本次提交的说明"[m
+[31m-commit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动[m
+[32m+[m	[32mcommit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动[m
+ [m
+ 4.查看工作区的状态[m
+ 	git status[m
+[31m-nothing to commit 工作区是干净的，没有需要提交的版本[m
+[31m-Untracked files 未跟踪文件，文件一旦加入stage或者repository时git就可跟踪了[m
+[31m-changes to be commited:[m
+[31m- (use "git reset HEAD <file>.." to unstage)[m
+[31m-暂存区有可提交到仓库的文件，如果你反悔了可以使用 git reset HEAD把暂存区的文件退回到工作区，unstage就是 undo stage 取消暂存[m
+[32m+[m	[32mnothing to commit 工作区是干净的，没有需要提交的版本[m
+[32m+[m	[32mUntracked files 未跟踪文件，文件一旦加入stage或者repository时git就可跟踪了[m
+[32m+[m	[32mchanges to be commited:[m
+[32m+[m	[32m(use "git reset HEAD <file>.." to unstage)[m
+[32m+[m	[32m暂存区有可提交到仓库的文件，如果你反悔了可以使用 git reset HEAD把暂存区的文件退回到工作区，unstage就是 undo stage 取消暂存[m
+ [m
+[31m-如果你的文件提交到了暂存区，后来你又更改了工作区的文件本身，那么git status时[m
+[31m-会提示：changes to be commited:[m
+[32m+[m	[32m如果你的文件提交到了暂存区，后来你又更改了工作区的文件本身，那么git status时[m
+[32m+[m	[32m会提示：changes to be commited:[m
+ 	（use "git add<file>..."to update what will be commited） 命令讲工作区文件覆盖就得暂存区[m
+ 	（use "git checkout -- <file>..." to discard changes in working directory）命令将旧的暂存区覆盖到新的工作区（危险，相当于丢弃了修改）[m
+ 5.add commit 一步到位的方法[m
+[36m@@ -46,5 +47,586 @@[m [mchanges to be commited:[m
+ 	回滚个别文件： 	  git reset 快照 文件名/路径[m
+ 	回滚到未来（往前滚）：只要知道指定快照的ID号就能往前滚[m
+ 	[m
+[32m+[m	[32m***查看各快照的ID（查看每次回滚或者操作的HEAD指向哪儿）：[m
+[32m+[m	[32mgit reflog   并且关闭git 隔天再打开都可以用[m
+[32m+[m[32m7.版本内容比较[m
+[32m+[m	[32m直接执行 git diff命令是比较暂存区和工作区的文件内容：[m
+[32m+[m	[32mdiff --git a/GitUse.txt b/GitUse.txt 表示对比的是存放在暂存区的GitUse.txt和放在工作区的GitUse.txt和放在工作区的GitUse[m
+[32m+[m	[32mindex 323432..q324324 表示对应的暂存区版本ID和工作区版本ID[m
+[32m+[m	[32m+号的绿色部分是新有的内容  灰色内容是共有内容[m
+[32m+[m	[32m@@-1,20 +1,28@@表示旧文件从第一行开始显示，显示20行， 新文件从狄航开始显示，显示28行[m
+[32m+[m	[32m：表示页面太小显示不下可以使用移动命令[m
+[32m+[m[32m8.移动命令[m
+[32m+[m	[32m下一行，上一行： j/k[m
+[32m+[m	[32m下一页，上一页：f/b[m
+[32m+[m	[32m跳转到开头，结尾：g/G   先输入3在输入g表示去第三行[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m
+[32m+[m[41m	[m
+[32m+[m	[32mgit use：[m
+[32m+[m[32m//确定用户名和邮箱   创建一个仓库  具体命令在雨C的教程3里面[m
+[32m+[m[32m//git一直支持中文的[m
+[32m+[m[32m1.创建一个文件放到我的gitproject库里(repository head)[m
+[32m+[m[32m2.将文件添加到暂存区（stage index）[m
+[32m+[m	[32mgit add README.md[m
+[32m+[m[32m3.将文件提交到Git仓库[m
+[32m+[m	[32mgit commit -m "本次提交的说明"[m
+[32m+[m	[32mcommit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动[m
+[32m+[m
+[32m+[m[32m4.查看工作区的状态[m
+[32m+[m	[32mgit status[m
+[32m+[m	[32mnothing to commit 工作区是干净的，没有需要提交的版本[m
+[32m+[m	[32mUntracked files 未跟踪文件，文件一旦加入stage或者repository时git就可跟踪了[m
+[32m+[m	[32mchanges to be commited:[m
+[32m+[m	[32m(use "git reset HEAD <file>.." to unstage)[m
+[32m+[m	[32m暂存区有可提交到仓库的文件，如果你反悔了可以使用 git reset HEAD把暂存区的文件退回到工作区，unstage就是 undo stage 取消暂存[m
+[32m+[m
+[32m+[m	[32m如果你的文件提交到了暂存区，后来你又更改了工作区的文件本身，那么git status时[m
+[32m+[m	[32m会提示：changes to be commited:[m
+[32m+[m	[32m（use "git add<file>..."to update what will be commited） 命令讲工作区文件覆盖就得暂存区[m
+[32m+[m	[32m（use "git checkout -- <file>..." to discard changes in working directory）命令将旧的暂存区覆盖到新的工作区（危险，相当于丢弃了修改）[m
+[32m+[m[32m5.add commit 一步到位的方法[m
+[32m+[m	[32m在commit时加上 -a即可   git commit -a -m"..." 缩写为 git commit -am "..."[m
+[32m+[m[32m6.回到过去的版本[m
+[32m+[m	[32m从暂存区回退到工作区的命令：checkout[m
+[32m+[m	[32m从仓库回退到暂存区的命令：reset[m
+[32m+[m		[32m__add______ __commit___[m
+[32m+[m	[32m   |		   |	       |[m
+[32m+[m	[32m工作区------>暂存区----->仓库[m
+[32m+[m	[32m   |_checkout__|___reset___|[m
+[32m+[m[41m	   [m
+[32m+[m	[32mgit log命令查看历史提交：排序按时间从近到远 commit后面是每次提交生成的唯一ID 一般使用前5位就可以[m
+[32m+[m[32m7.回滚快照[m
+[32m+[m	[32m快照就是提交的版本，回滚快照就是回滚提交的版本[m
+[32m+[m	[32mHEAD表示最新提交的快照 HEAD~表示HEAD的上一个快照 HEAD~~表示山上个  HEAD~10表示上上...*10个快照[m
+[32m+[m	[32mgit reset HEAD~ 就是将上一个快照变更成了最新快照，并将该快照回滚到了暂存区。[m
+[32m+[m[41m	[m
+[32m+[m	[32m在reset后面加上选项： --soft HEAD指向上一版本，而该版本不回滚到暂存区，相当于撤销最近一次的提交[m
+[32m+[m						[32m  --hard  HEAD指向上一版本，该版本回滚到暂存区，还原到了工作区。[m
+[32m+[m[41m						  [m
+[32m+[m	[32m总结：1.移动HEAD的指向（--soft）[m
+[32m+[m		[32m  2.将快照回滚到暂存区（[--mixed],默认）[m
+[32m+[m		[32m  3.将暂存区还原到工作目录（--hard）[m
+[32m+[m[41m		  [m
+[32m+[m	[32m回滚到指定快照：  git reset 12345  至少ID前5位[m
+[32m+[m	[32m回滚个别文件： 	  git reset 快照 文件名/路径[m
+[32m+[m	[32m回滚到未来（往前滚）：只要知道指定快照的ID号就能往前滚[m
+[32m+[m[41m	[m
+[32m+[m	[32m***查看各快照的ID（查看每次回滚或者操作的HEAD指向哪儿）：[m
+[32m+[m	[32mgit reflog   并且关闭git 隔天再打开都可以用[m
+[32m+[m[32m7.版本内容比较[m
+[32m+[m	[32m直接执行 git diff命令是比较暂存区和工作区的文件内容：[m
+[32m+[m	[32mdiff --git a/GitUse.txt b/GitUse.txt 表示对比的是存放在暂存区的GitUse.txt和放在工作区的GitUse.txt和放在工作区的GitUse[m
+[32m+[m	[32mindex 323432..q324324 表示对应的暂存区版本ID和工作区版本ID[m
+[32m+[m	[32m+号的绿色部分是新有的内容  灰色内容是共有内容[m
+[32m+[m	[32m@@-1,20 +1,28@@表示旧文件从第一行开始显示，显示20行， 新文件从狄航开始显示，显示28行[m
+[32m+[m	[32m：表示页面太小显示不下可以使用移动命令[m
+[32m+[m[32m8.移动命令[m
+[32m+[m	[32m下一行，上一行： j/k[m
+[32m+[m	[32m下一页，上一页：f/b[m
+[32m+[m	[32m跳转到开头，结尾：g/G   先输入3在输入g表示去第三行[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[32mgit use：[m
+[32m+[m[32m//确定用户名和邮箱   创建一个仓库  具体命令在雨C的教程3里面[m
+[32m+[m[32m//git一直支持中文的[m
+[32m+[m[32m1.创建一个文件放到我的gitproject库里(repository head)[m
+[32m+[m[32m2.将文件添加到暂存区（stage index）[m
+[32m+[m	[32mgit add README.md[m
+[32m+[m[32m3.将文件提交到Git仓库[m
+[32m+[m	[32mgit commit -m "本次提交的说明"[m
+[32m+[m	[32mcommit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动[m
+[32m+[m
+[32m+[m[32m4.查看工作区的状态[m
+[32m+[m	[32mgit status[m
+[32m+[m	[32mnothing to commit 工作区是干净的，没有需要提交的版本[m
+[32m+[m	[32mUntracked files 未跟踪文件，文件一旦加入stage或者repository时git就可跟踪了[m
+[32m+[m	[32mchanges to be commited:[m
+[32m+[m	[32m(use "git reset HEAD <file>.." to unstage)[m
+[32m+[m	[32m暂存区有可提交到仓库的文件，如果你反悔了可以使用 git reset HEAD把暂存区的文件退回到工作区，unstage就是 undo stage 取消暂存[m
+[32m+[m
+[32m+[m	[32m如果你的文件提交到了暂存区，后来你又更改了工作区的文件本身，那么git status时[m
+[32m+[m	[32m会提示：changes to be commited:[m
+[32m+[m	[32m（use "git add<file>..."to update what will be commited） 命令讲工作区文件覆盖就得暂存区[m
+[32m+[m	[32m（use "git checkout -- <file>..." to discard changes in working directory）命令将旧的暂存区覆盖到新的工作区（危险，相当于丢弃了修改）[m
+[32m+[m[32m5.add commit 一步到位的方法[m
+[32m+[m	[32m在commit时加上 -a即可   git commit -a -m"..." 缩写为 git commit -am "..."[m
+[32m+[m[32m6.回到过去的版本[m
+[32m+[m	[32m从暂存区回退到工作区的命令：checkout[m
+[32m+[m	[32m从仓库回退到暂存区的命令：reset[m
+[32m+[m		[32m__add______ __commit___[m
+[32m+[m	[32m   |		   |	       |[m
+[32m+[m	[32m工作区------>暂存区----->仓库[m
+[32m+[m	[32m   |_checkout__|___reset___|[m
+[32m+[m[41m	   [m
+[32m+[m	[32mgit log命令查看历史提交：排序按时间从近到远 commit后面是每次提交生成的唯一ID 一般使用前5位就可以[m
+[32m+[m[32m7.回滚快照[m
+[32m+[m	[32m快照就是提交的版本，回滚快照就是回滚提交的版本[m
+[32m+[m	[32mHEAD表示最新提交的快照 HEAD~表示HEAD的上一个快照 HEAD~~表示山上个  HEAD~10表示上上...*10个快照[m
+[32m+[m	[32mgit reset HEAD~ 就是将上一个快照变更成了最新快照，并将该快照回滚到了暂存区。[m
+[32m+[m[41m	[m
+[32m+[m	[32m在reset后面加上选项： --soft HEAD指向上一版本，而该版本不回滚到暂存区，相当于撤销最近一次的提交[m
+[32m+[m						[32m  --hard  HEAD指向上一版本，该版本回滚到暂存区，还原到了工作区。[m
+[32m+[m[41m						  [m
+[32m+[m	[32m总结：1.移动HEAD的指向（--soft）[m
+[32m+[m		[32m  2.将快照回滚到暂存区（[--mixed],默认）[m
+[32m+[m		[32m  3.将暂存区还原到工作目录（--hard）[m
+[32m+[m[41m		  [m
+[32m+[m	[32m回滚到指定快照：  git reset 12345  至少ID前5位[m
+[32m+[m	[32m回滚个别文件： 	  git reset 快照 文件名/路径[m
+[32m+[m	[32m回滚到未来（往前滚）：只要知道指定快照的ID号就能往前滚[m
+[32m+[m[41m	[m
+[32m+[m	[32m***查看各快照的ID（查看每次回滚或者操作的HEAD指向哪儿）：[m
+[32m+[m	[32mgit reflog   并且关闭git 隔天再打开都可以用[m
+[32m+[m[32m7.版本内容比较[m
+[32m+[m	[32m直接执行 git diff命令是比较暂存区和工作区的文件内容：[m
+[32m+[m	[32mdiff --git a/GitUse.txt b/GitUse.txt 表示对比的是存放在暂存区的GitUse.txt和放在工作区的GitUse.txt和放在工作区的GitUse[m
+[32m+[m	[32mindex 323432..q324324 表示对应的暂存区版本ID和工作区版本ID[m
+[32m+[m	[32m+号的绿色部分是新有的内容  灰色内容是共有内容[m
+[32m+[m	[32m@@-1,20 +1,28@@表示旧文件从第一行开始显示，显示20行， 新文件从狄航开始显示，显示28行[m
+[32m+[m	[32m：表示页面太小显示不下可以使用移动命令[m
+[32m+[m[32m8.移动命令[m
+[32m+[m	[32m下一行，上一行： j/k[m
+[32m+[m	[32m下一页，上一页：f/b[m
+[32m+[m	[32m跳转到开头，结尾：g/G   先输入3在输入g表示去第三行[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[32mgit use：[m
+[32m+[m[32m//确定用户名和邮箱   创建一个仓库  具体命令在雨C的教程3里面[m
+[32m+[m[32m//git一直支持中文的[m
+[32m+[m[32m1.创建一个文件放到我的gitproject库里(repository head)[m
+[32m+[m[32m2.将文件添加到暂存区（stage index）[m
+[32m+[m	[32mgit add README.md[m
+[32m+[m[32m3.将文件提交到Git仓库[m
+[32m+[m	[32mgit commit -m "本次提交的说明"[m
+[32m+[m	[32mcommit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动[m
+[32m+[m
+[32m+[m[32m4.查看工作区的状态[m
+[32m+[m	[32mgit status[m
+[32m+[m	[32mnothing to commit 工作区是干净的，没有需要提交的版本[m
+[32m+[m	[32mUntracked files 未跟踪文件，文件一旦加入stage或者repository时git就可跟踪了[m
+[32m+[m	[32mchanges to be commited:[m
+[32m+[m	[32m(use "git reset HEAD <file>.." to unstage)[m
+[32m+[m	[32m暂存区有可提交到仓库的文件，如果你反悔了可以使用 git reset HEAD把暂存区的文件退回到工作区，unstage就是 undo stage 取消暂存[m
+[32m+[m
+[32m+[m	[32m如果你的文件提交到了暂存区，后来你又更改了工作区的文件本身，那么git status时[m
+[32m+[m	[32m会提示：changes to be commited:[m
+[32m+[m	[32m（use "git add<file>..."to update what will be commited） 命令讲工作区文件覆盖就得暂存区[m
+[32m+[m	[32m（use "git checkout -- <file>..." to discard changes in working directory）命令将旧的暂存区覆盖到新的工作区（危险，相当于丢弃了修改）[m
+[32m+[m[32m5.add commit 一步到位的方法[m
+[32m+[m	[32m在commit时加上 -a即可   git commit -a -m"..." 缩写为 git commit -am "..."[m
+[32m+[m[32m6.回到过去的版本[m
+[32m+[m	[32m从暂存区回退到工作区的命令：checkout[m
+[32m+[m	[32m从仓库回退到暂存区的命令：reset[m
+[32m+[m		[32m__add______ __commit___[m
+[32m+[m	[32m   |		   |	       |[m
+[32m+[m	[32m工作区------>暂存区----->仓库[m
+[32m+[m	[32m   |_checkout__|___reset___|[m
+[32m+[m[41m	   [m
+[32m+[m	[32mgit log命令查看历史提交：排序按时间从近到远 commit后面是每次提交生成的唯一ID 一般使用前5位就可以[m
+[32m+[m[32m7.回滚快照[m
+[32m+[m	[32m快照就是提交的版本，回滚快照就是回滚提交的版本[m
+[32m+[m	[32mHEAD表示最新提交的快照 HEAD~表示HEAD的上一个快照 HEAD~~表示山上个  HEAD~10表示上上...*10个快照[m
+[32m+[m	[32mgit reset HEAD~ 就是将上一个快照变更成了最新快照，并将该快照回滚到了暂存区。[m
+[32m+[m[41m	[m
+[32m+[m	[32m在reset后面加上选项： --soft HEAD指向上一版本，而该版本不回滚到暂存区，相当于撤销最近一次的提交[m
+[32m+[m						[32m  --hard  HEAD指向上一版本，该版本回滚到暂存区，还原到了工作区。[m
+[32m+[m[41m						  [m
+[32m+[m	[32m总结：1.移动HEAD的指向（--soft）[m
+[32m+[m		[32m  2.将快照回滚到暂存区（[--mixed],默认）[m
+[32m+[m		[32m  3.将暂存区还原到工作目录（--hard）[m
+[32m+[m[41m		  [m
+[32m+[m	[32m回滚到指定快照：  git reset 12345  至少ID前5位[m
+[32m+[m	[32m回滚个别文件： 	  git reset 快照 文件名/路径[m
+[32m+[m	[32m回滚到未来（往前滚）：只要知道指定快照的ID号就能往前滚[m
+[32m+[m[41m	[m
+[32m+[m	[32m***查看各快照的ID（查看每次回滚或者操作的HEAD指向哪儿）：[m
+[32m+[m	[32mgit reflog   并且关闭git 隔天再打开都可以用[m
+[32m+[m[32m7.版本内容比较[m
+[32m+[m	[32m直接执行 git diff命令是比较暂存区和工作区的文件内容：[m
+[32m+[m	[32mdiff --git a/GitUse.txt b/GitUse.txt 表示对比的是存放在暂存区的GitUse.txt和放在工作区的GitUse.txt和放在工作区的GitUse[m
+[32m+[m	[32mindex 323432..q324324 表示对应的暂存区版本ID和工作区版本ID[m
+[32m+[m	[32m+号的绿色部分是新有的内容  灰色内容是共有内容[m
+[32m+[m	[32m@@-1,20 +1,28@@表示旧文件从第一行开始显示，显示20行， 新文件从狄航开始显示，显示28行[m
+[32m+[m	[32m：表示页面太小显示不下可以使用移动命令[m
+[32m+[m[32m8.移动命令[m
+[32m+[m	[32m下一行，上一行： j/k[m
+[32m+[m	[32m下一页，上一页：f/b[m
+[32m+[m	[32m跳转到开头，结尾：g/G   先输入3在输入g表示去第三行[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[32mgit use：[m
+[32m+[m[32m//确定用户名和邮箱   创建一个仓库  具体命令在雨C的教程3里面[m
+[32m+[m[32m//git一直支持中文的[m
+[32m+[m[32m1.创建一个文件放到我的gitproject库里(repository head)[m
+[32m+[m[32m2.将文件添加到暂存区（stage index）[m
+[32m+[m	[32mgit add README.md[m
+[32m+[m[32m3.将文件提交到Git仓库[m
+[32m+[m	[32mgit commit -m "本次提交的说明"[m
+[32m+[m	[32mcommit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动[m
+[32m+[m
+[32m+[m[32m4.查看工作区的状态[m
+[32m+[m	[32mgit status[m
+[32m+[m	[32mnothing to commit 工作区是干净的，没有需要提交的版本[m
+[32m+[m	[32mUntracked files 未跟踪文件，文件一旦加入stage或者repository时git就可跟踪了[m
+[32m+[m	[32mchanges to be commited:[m
+[32m+[m	[32m(use "git reset HEAD <file>.." to unstage)[m
+[32m+[m	[32m暂存区有可提交到仓库的文件，如果你反悔了可以使用 git reset HEAD把暂存区的文件退回到工作区，unstage就是 undo stage 取消暂存[m
+[32m+[m
+[32m+[m	[32m如果你的文件提交到了暂存区，后来你又更改了工作区的文件本身，那么git status时[m
+[32m+[m	[32m会提示：changes to be commited:[m
+[32m+[m	[32m（use "git add<file>..."to update what will be commited） 命令讲工作区文件覆盖就得暂存区[m
+[32m+[m	[32m（use "git checkout -- <file>..." to discard changes in working directory）命令将旧的暂存区覆盖到新的工作区（危险，相当于丢弃了修改）[m
+[32m+[m[32m5.add commit 一步到位的方法[m
+[32m+[m	[32m在commit时加上 -a即可   git commit -a -m"..." 缩写为 git commit -am "..."[m
+[32m+[m[32m6.回到过去的版本[m
+[32m+[m	[32m从暂存区回退到工作区的命令：checkout[m
+[32m+[m	[32m从仓库回退到暂存区的命令：reset[m
+[32m+[m		[32m__add______ __commit___[m
+[32m+[m	[32m   |		   |	       |[m
+[32m+[m	[32m工作区------>暂存区----->仓库[m
+[32m+[m	[32m   |_checkout__|___reset___|[m
+[32m+[m[41m	   [m
+[32m+[m	[32mgit log命令查看历史提交：排序按时间从近到远 commit后面是每次提交生成的唯一ID 一般使用前5位就可以[m
+[32m+[m[32m7.回滚快照[m
+[32m+[m	[32m快照就是提交的版本，回滚快照就是回滚提交的版本[m
+[32m+[m	[32mHEAD表示最新提交的快照 HEAD~表示HEAD的上一个快照 HEAD~~表示山上个  HEAD~10表示上上...*10个快照[m
+[32m+[m	[32mgit reset HEAD~ 就是将上一个快照变更成了最新快照，并将该快照回滚到了暂存区。[m
+[32m+[m[41m	[m
+[32m+[m	[32m在reset后面加上选项： --soft HEAD指向上一版本，而该版本不回滚到暂存区，相当于撤销最近一次的提交[m
+[32m+[m						[32m  --hard  HEAD指向上一版本，该版本回滚到暂存区，还原到了工作区。[m
+[32m+[m[41m						  [m
+[32m+[m	[32m总结：1.移动HEAD的指向（--soft）[m
+[32m+[m		[32m  2.将快照回滚到暂存区（[--mixed],默认）[m
+[32m+[m		[32m  3.将暂存区还原到工作目录（--hard）[m
+[32m+[m[41m		  [m
+[32m+[m	[32m回滚到指定快照：  git reset 12345  至少ID前5位[m
+[32m+[m	[32m回滚个别文件： 	  git reset 快照 文件名/路径[m
+[32m+[m	[32m回滚到未来（往前滚）：只要知道指定快照的ID号就能往前滚[m
+[32m+[m[41m	[m
+[32m+[m	[32m***查看各快照的ID（查看每次回滚或者操作的HEAD指向哪儿）：[m
+[32m+[m	[32mgit reflog   并且关闭git 隔天再打开都可以用[m
+[32m+[m[32m7.版本内容比较[m
+[32m+[m	[32m直接执行 git diff命令是比较暂存区和工作区的文件内容：[m
+[32m+[m	[32mdiff --git a/GitUse.txt b/GitUse.txt 表示对比的是存放在暂存区的GitUse.txt和放在工作区的GitUse.txt和放在工作区的GitUse[m
+[32m+[m	[32mindex 323432..q324324 表示对应的暂存区版本ID和工作区版本ID[m
+[32m+[m	[32m+号的绿色部分是新有的内容  灰色内容是共有内容[m
+[32m+[m	[32m@@-1,20 +1,28@@表示旧文件从第一行开始显示，显示20行， 新文件从狄航开始显示，显示28行[m
+[32m+[m	[32m：表示页面太小显示不下可以使用移动命令[m
+[32m+[m[32m8.移动命令[m
+[32m+[m	[32m下一行，上一行： j/k[m
+[32m+[m	[32m下一页，上一页：f/b[m
+[32m+[m	[32m跳转到开头，结尾：g/G   先输入3在输入g表示去第三行[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[32mgit use：[m
+[32m+[m[32m//确定用户名和邮箱   创建一个仓库  具体命令在雨C的教程3里面[m
+[32m+[m[32m//git一直支持中文的[m
+[32m+[m[32m1.创建一个文件放到我的gitproject库里(repository head)[m
+[32m+[m[32m2.将文件添加到暂存区（stage index）[m
+[32m+[m	[32mgit add README.md[m
+[32m+[m[32m3.将文件提交到Git仓库[m
+[32m+[m	[32mgit commit -m "本次提交的说明"[m
+[32m+[m	[32mcommit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动[m
+[32m+[m
+[32m+[m[32m4.查看工作区的状态[m
+[32m+[m	[32mgit status[m
+[32m+[m	[32mnothing to commit 工作区是干净的，没有需要提交的版本[m
+[32m+[m	[32mUntracked files 未跟踪文件，文件一旦加入stage或者repository时git就可跟踪了[m
+[32m+[m	[32mchanges to be commited:[m
+[32m+[m	[32m(use "git reset HEAD <file>.." to unstage)[m
+[32m+[m	[32m暂存区有可提交到仓库的文件，如果你反悔了可以使用 git reset HEAD把暂存区的文件退回到工作区，unstage就是 undo stage 取消暂存[m
+[32m+[m
+[32m+[m	[32m如果你的文件提交到了暂存区，后来你又更改了工作区的文件本身，那么git status时[m
+[32m+[m	[32m会提示：changes to be commited:[m
+[32m+[m	[32m（use "git add<file>..."to update what will be commited） 命令讲工作区文件覆盖就得暂存区[m
+[32m+[m	[32m（use "git checkout -- <file>..." to discard changes in working directory）命令将旧的暂存区覆盖到新的工作区（危险，相当于丢弃了修改）[m
+[32m+[m[32m5.add commit 一步到位的方法[m
+[32m+[m	[32m在commit时加上 -a即可   git commit -a -m"..." 缩写为 git commit -am "..."[m
+[32m+[m[32m6.回到过去的版本[m
+[32m+[m	[32m从暂存区回退到工作区的命令：checkout[m
+[32m+[m	[32m从仓库回退到暂存区的命令：reset[m
+[32m+[m		[32m__add______ __commit___[m
+[32m+[m	[32m   |		   |	       |[m
+[32m+[m	[32m工作区------>暂存区----->仓库[m
+[32m+[m	[32m   |_checkout__|___reset___|[m
+[32m+[m[41m	   [m
+[32m+[m	[32mgit log命令查看历史提交：排序按时间从近到远 commit后面是每次提交生成的唯一ID 一般使用前5位就可以[m
+[32m+[m[32m7.回滚快照[m
+[32m+[m	[32m快照就是提交的版本，回滚快照就是回滚提交的版本[m
+[32m+[m	[32mHEAD表示最新提交的快照 HEAD~表示HEAD的上一个快照 HEAD~~表示山上个  HEAD~10表示上上...*10个快照[m
+[32m+[m	[32mgit reset HEAD~ 就是将上一个快照变更成了最新快照，并将该快照回滚到了暂存区。[m
+[32m+[m[41m	[m
+[32m+[m	[32m在reset后面加上选项： --soft HEAD指向上一版本，而该版本不回滚到暂存区，相当于撤销最近一次的提交[m
+[32m+[m						[32m  --hard  HEAD指向上一版本，该版本回滚到暂存区，还原到了工作区。[m
+[32m+[m[41m						  [m
+[32m+[m	[32m总结：1.移动HEAD的指向（--soft）[m
+[32m+[m		[32m  2.将快照回滚到暂存区（[--mixed],默认）[m
+[32m+[m		[32m  3.将暂存区还原到工作目录（--hard）[m
+[32m+[m[41m		  [m
+[32m+[m	[32m回滚到指定快照：  git reset 12345  至少ID前5位[m
+[32m+[m	[32m回滚个别文件： 	  git reset 快照 文件名/路径[m
+[32m+[m	[32m回滚到未来（往前滚）：只要知道指定快照的ID号就能往前滚[m
+[32m+[m[41m	[m
+[32m+[m	[32m***查看各快照的ID（查看每次回滚或者操作的HEAD指向哪儿）：[m
+[32m+[m	[32mgit reflog   并且关闭git 隔天再打开都可以用[m
+[32m+[m[32m7.版本内容比较[m
+[32m+[m	[32m直接执行 git diff命令是比较暂存区和工作区的文件内容：[m
+[32m+[m	[32mdiff --git a/GitUse.txt b/GitUse.txt 表示对比的是存放在暂存区的GitUse.txt和放在工作区的GitUse.txt和放在工作区的GitUse[m
+[32m+[m	[32mindex 323432..q324324 表示对应的暂存区版本ID和工作区版本ID[m
+[32m+[m	[32m+号的绿色部分是新有的内容  灰色内容是共有内容[m
+[32m+[m	[32m@@-1,20 +1,28@@表示旧文件从第一行开始显示，显示20行， 新文件从狄航开始显示，显示28行[m
+[32m+[m	[32m：表示页面太小显示不下可以使用移动命令[m
+[32m+[m[32m8.移动命令[m
+[32m+[m	[32m下一行，上一行： j/k[m
+[32m+[m	[32m下一页，上一页：f/b[m
+[32m+[m	[32m跳转到开头，结尾：g/G   先输入3在输入g表示去第三行[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[32mgit use：[m
+[32m+[m[32m//确定用户名和邮箱   创建一个仓库  具体命令在雨C的教程3里面[m
+[32m+[m[32m//git一直支持中文的[m
+[32m+[m[32m1.创建一个文件放到我的gitproject库里(repository head)[m
+[32m+[m[32m2.将文件添加到暂存区（stage index）[m
+[32m+[m	[32mgit add README.md[m
+[32m+[m[32m3.将文件提交到Git仓库[m
+[32m+[m	[32mgit commit -m "本次提交的说明"[m
+[32m+[m	[32mcommit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动[m
+[32m+[m
+[32m+[m[32m4.查看工作区的状态[m
+[32m+[m	[32mgit status[m
+[32m+[m	[32mnothing to commit 工作区是干净的，没有需要提交的版本[m
+[32m+[m	[32mUntracked files 未跟踪文件，文件一旦加入stage或者repository时git就可跟踪了[m
+[32m+[m	[32mchanges to be commited:[m
+[32m+[m	[32m(use "git reset HEAD <file>.." to unstage)[m
+[32m+[m	[32m暂存区有可提交到仓库的文件，如果你反悔了可以使用 git reset HEAD把暂存区的文件退回到工作区，unstage就是 undo stage 取消暂存[m
+[32m+[m
+[32m+[m	[32m如果你的文件提交到了暂存区，后来你又更改了工作区的文件本身，那么git status时[m
+[32m+[m	[32m会提示：changes to be commited:[m
+[32m+[m	[32m（use "git add<file>..."to update what will be commited） 命令讲工作区文件覆盖就得暂存区[m
+[32m+[m	[32m（use "git checkout -- <file>..." to discard changes in working directory）命令将旧的暂存区覆盖到新的工作区（危险，相当于丢弃了修改）[m
+[32m+[m[32m5.add commit 一步到位的方法[m
+[32m+[m	[32m在commit时加上 -a即可   git commit -a -m"..." 缩写为 git commit -am "..."[m
+[32m+[m[32m6.回到过去的版本[m
+[32m+[m	[32m从暂存区回退到工作区的命令：checkout[m
+[32m+[m	[32m从仓库回退到暂存区的命令：reset[m
+[32m+[m		[32m__add______ __commit___[m
+[32m+[m	[32m   |		   |	       |[m
+[32m+[m	[32m工作区------>暂存区----->仓库[m
+[32m+[m	[32m   |_checkout__|___reset___|[m
+[32m+[m[41m	   [m
+[32m+[m	[32mgit log命令查看历史提交：排序按时间从近到远 commit后面是每次提交生成的唯一ID 一般使用前5位就可以[m
+[32m+[m[32m7.回滚快照[m
+[32m+[m	[32m快照就是提交的版本，回滚快照就是回滚提交的版本[m
+[32m+[m	[32mHEAD表示最新提交的快照 HEAD~表示HEAD的上一个快照 HEAD~~表示山上个  HEAD~10表示上上...*10个快照[m
+[32m+[m	[32mgit reset HEAD~ 就是将上一个快照变更成了最新快照，并将该快照回滚到了暂存区。[m
+[32m+[m[41m	[m
+[32m+[m	[32m在reset后面加上选项： --soft HEAD指向上一版本，而该版本不回滚到暂存区，相当于撤销最近一次的提交[m
+[32m+[m						[32m  --hard  HEAD指向上一版本，该版本回滚到暂存区，还原到了工作区。[m
+[32m+[m[41m						  [m
+[32m+[m	[32m总结：1.移动HEAD的指向（--soft）[m
+[32m+[m		[32m  2.将快照回滚到暂存区（[--mixed],默认）[m
+[32m+[m		[32m  3.将暂存区还原到工作目录（--hard）[m
+[32m+[m[41m		  [m
+[32m+[m	[32m回滚到指定快照：  git reset 12345  至少ID前5位[m
+[32m+[m	[32m回滚个别文件： 	  git reset 快照 文件名/路径[m
+[32m+[m	[32m回滚到未来（往前滚）：只要知道指定快照的ID号就能往前滚[m
+[32m+[m[41m	[m
+[32m+[m	[32m***查看各快照的ID（查看每次回滚或者操作的HEAD指向哪儿）：[m
+[32m+[m	[32mgit reflog   并且关闭git 隔天再打开都可以用[m
+[32m+[m[32m7.版本内容比较[m
+[32m+[m	[32m直接执行 git diff命令是比较暂存区和工作区的文件内容：[m
+[32m+[m	[32mdiff --git a/GitUse.txt b/GitUse.txt 表示对比的是存放在暂存区的GitUse.txt和放在工作区的GitUse.txt和放在工作区的GitUse[m
+[32m+[m	[32mindex 323432..q324324 表示对应的暂存区版本ID和工作区版本ID[m
+[32m+[m	[32m+号的绿色部分是新有的内容  灰色内容是共有内容[m
+[32m+[m	[32m@@-1,20 +1,28@@表示旧文件从第一行开始显示，显示20行， 新文件从狄航开始显示，显示28行[m
+[32m+[m	[32m：表示页面太小显示不下可以使用移动命令[m
+[32m+[m[32m8.移动命令[m
+[32m+[m	[32m下一行，上一行： j/k[m
+[32m+[m	[32m下一页，上一页：f/b[m
+[32m+[m	[32m跳转到开头，结尾：g/G   先输入3在输入g表示去第三行[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[32mgit use：[m
+[32m+[m[32m//确定用户名和邮箱   创建一个仓库  具体命令在雨C的教程3里面[m
+[32m+[m[32m//git一直支持中文的[m
+[32m+[m[32m1.创建一个文件放到我的gitproject库里(repository head)[m
+[32m+[m[32m2.将文件添加到暂存区（stage index）[m
+[32m+[m	[32mgit add README.md[m
+[32m+[m[32m3.将文件提交到Git仓库[m
+[32m+[m	[32mgit commit -m "本次提交的说明"[m
+[32m+[m	[32mcommit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动[m
+[32m+[m
+[32m+[m[32m4.查看工作区的状态[m
+[32m+[m	[32mgit status[m
+[32m+[m	[32mnothing to commit 工作区是干净的，没有需要提交的版本[m
+[32m+[m	[32mUntracked files 未跟踪文件，文件一旦加入stage或者repository时git就可跟踪了[m
+[32m+[m	[32mchanges to be commited:[m
+[32m+[m	[32m(use "git reset HEAD <file>.." to unstage)[m
+[32m+[m	[32m暂存区有可提交到仓库的文件，如果你反悔了可以使用 git reset HEAD把暂存区的文件退回到工作区，unstage就是 undo stage 取消暂存[m
+[32m+[m
+[32m+[m	[32m如果你的文件提交到了暂存区，后来你又更改了工作区的文件本身，那么git status时[m
+[32m+[m	[32m会提示：changes to be commited:[m
+[32m+[m	[32m（use "git add<file>..."to update what will be commited） 命令讲工作区文件覆盖就得暂存区[m
+[32m+[m	[32m（use "git checkout -- <file>..." to discard changes in working directory）命令将旧的暂存区覆盖到新的工作区（危险，相当于丢弃了修改）[m
+[32m+[m[32m5.add commit 一步到位的方法[m
+[32m+[m	[32m在commit时加上 -a即可   git commit -a -m"..." 缩写为 git commit -am "..."[m
+[32m+[m[32m6.回到过去的版本[m
+[32m+[m	[32m从暂存区回退到工作区的命令：checkout[m
+[32m+[m	[32m从仓库回退到暂存区的命令：reset[m
+[32m+[m		[32m__add______ __commit___[m
+[32m+[m	[32m   |		   |	       |[m
+[32m+[m	[32m工作区------>暂存区----->仓库[m
+[32m+[m	[32m   |_checkout__|___reset___|[m
+[32m+[m[41m	   [m
+[32m+[m	[32mgit log命令查看历史提交：排序按时间从近到远 commit后面是每次提交生成的唯一ID 一般使用前5位就可以[m
+[32m+[m[32m7.回滚快照[m
+[32m+[m	[32m快照就是提交的版本，回滚快照就是回滚提交的版本[m
+[32m+[m	[32mHEAD表示最新提交的快照 HEAD~表示HEAD的上一个快照 HEAD~~表示山上个  HEAD~10表示上上...*10个快照[m
+[32m+[m	[32mgit reset HEAD~ 就是将上一个快照变更成了最新快照，并将该快照回滚到了暂存区。[m
+[32m+[m[41m	[m
+[32m+[m	[32m在reset后面加上选项： --soft HEAD指向上一版本，而该版本不回滚到暂存区，相当于撤销最近一次的提交[m
+[32m+[m						[32m  --hard  HEAD指向上一版本，该版本回滚到暂存区，还原到了工作区。[m
+[32m+[m[41m						  [m
+[32m+[m	[32m总结：1.移动HEAD的指向（--soft）[m
+[32m+[m		[32m  2.将快照回滚到暂存区（[--mixed],默认）[m
+[32m+[m		[32m  3.将暂存区还原到工作目录（--hard）[m
+[32m+[m[41m		  [m
+[32m+[m	[32m回滚到指定快照：  git reset 12345  至少ID前5位[m
+[32m+[m	[32m回滚个别文件： 	  git reset 快照 文件名/路径[m
+[32m+[m	[32m回滚到未来（往前滚）：只要知道指定快照的ID号就能往前滚[m
+[32m+[m[41m	[m
+[32m+[m	[32m***查看各快照的ID（查看每次回滚或者操作的HEAD指向哪儿）：[m
+[32m+[m	[32mgit reflog   并且关闭git 隔天再打开都可以用[m
+[32m+[m[32m7.版本内容比较[m
+[32m+[m	[32m直接执行 git diff命令是比较暂存区和工作区的文件内容：[m
+[32m+[m	[32mdiff --git a/GitUse.txt b/GitUse.txt 表示对比的是存放在暂存区的GitUse.txt和放在工作区的GitUse.txt和放在工作区的GitUse[m
+[32m+[m	[32mindex 323432..q324324 表示对应的暂存区版本ID和工作区版本ID[m
+[32m+[m	[32m+号的绿色部分是新有的内容  灰色内容是共有内容[m
+[32m+[m	[32m@@-1,20 +1,28@@表示旧文件从第一行开始显示，显示20行， 新文件从狄航开始显示，显示28行[m
+[32m+[m	[32m：表示页面太小显示不下可以使用移动命令[m
+[32m+[m[32m8.移动命令[m
+[32m+[m	[32m下一行，上一行： j/k[m
+[32m+[m	[32m下一页，上一页：f/b[m
+[32m+[m	[32m跳转到开头，结尾：g/G   先输入3在输入g表示去第三行[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[32mgit use：[m
+[32m+[m[32m//确定用户名和邮箱   创建一个仓库  具体命令在雨C的教程3里面[m
+[32m+[m[32m//git一直支持中文的[m
+[32m+[m[32m1.创建一个文件放到我的gitproject库里(repository head)[m
+[32m+[m[32m2.将文件添加到暂存区（stage index）[m
+[32m+[m	[32mgit add README.md[m
+[32m+[m[32m3.将文件提交到Git仓库[m
+[32m+[m	[32mgit commit -m "本次提交的说明"[m
+[32m+[m	[32mcommit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动[m
+[32m+[m
+[32m+[m[32m4.查看工作区的状态[m
+[32m+[m	[32mgit status[m
+[32m+[m	[32mnothing to commit 工作区是干净的，没有需要提交的版本[m
+[32m+[m	[32mUntracked files 未跟踪文件，文件一旦加入stage或者repository时git就可跟踪了[m
+[32m+[m	[32mchanges to be commited:[m
+[32m+[m	[32m(use "git reset HEAD <file>.." to unstage)[m
+[32m+[m	[32m暂存区有可提交到仓库的文件，如果你反悔了可以使用 git reset HEAD把暂存区的文件退回到工作区，unstage就是 undo stage 取消暂存[m
+[32m+[m
+[32m+[m	[32m如果你的文件提交到了暂存区，后来你又更改了工作区的文件本身，那么git status时[m
+[32m+[m	[32m会提示：changes to be commited:[m
+[32m+[m	[32m（use "git add<file>..."to update what will be commited） 命令讲工作区文件覆盖就得暂存区[m
+[32m+[m	[32m（use "git checkout -- <file>..." to discard changes in working directory）命令将旧的暂存区覆盖到新的工作区（危险，相当于丢弃了修改）[m
+[32m+[m[32m5.add commit 一步到位的方法[m
+[32m+[m	[32m在commit时加上 -a即可   git commit -a -m"..." 缩写为 git commit -am "..."[m
+[32m+[m[32m6.回到过去的版本[m
+[32m+[m	[32m从暂存区回退到工作区的命令：checkout[m
+[32m+[m	[32m从仓库回退到暂存区的命令：reset[m
+[32m+[m		[32m__add______ __commit___[m
+[32m+[m	[32m   |		   |	       |[m
+[32m+[m	[32m工作区------>暂存区----->仓库[m
+[32m+[m	[32m   |_checkout__|___reset___|[m
+[32m+[m[41m	   [m
+[32m+[m	[32mgit log命令查看历史提交：排序按时间从近到远 commit后面是每次提交生成的唯一ID 一般使用前5位就可以[m
+[32m+[m[32m7.回滚快照[m
+[32m+[m	[32m快照就是提交的版本，回滚快照就是回滚提交的版本[m
+[32m+[m	[32mHEAD表示最新提交的快照 HEAD~表示HEAD的上一个快照 HEAD~~表示山上个  HEAD~10表示上上...*10个快照[m
+[32m+[m	[32mgit reset HEAD~ 就是将上一个快照变更成了最新快照，并将该快照回滚到了暂存区。[m
+[32m+[m[41m	[m
+[32m+[m	[32m在reset后面加上选项： --soft HEAD指向上一版本，而该版本不回滚到暂存区，相当于撤销最近一次的提交[m
+[32m+[m						[32m  --hard  HEAD指向上一版本，该版本回滚到暂存区，还原到了工作区。[m
+[32m+[m[41m						  [m
+[32m+[m	[32m总结：1.移动HEAD的指向（--soft）[m
+[32m+[m		[32m  2.将快照回滚到暂存区（[--mixed],默认）[m
+[32m+[m		[32m  3.将暂存区还原到工作目录（--hard）[m
+[32m+[m[41m		  [m
+[32m+[m	[32m回滚到指定快照：  git reset 12345  至少ID前5位[m
+[32m+[m	[32m回滚个别文件： 	  git reset 快照 文件名/路径[m
+[32m+[m	[32m回滚到未来（往前滚）：只要知道指定快照的ID号就能往前滚[m
+[32m+[m[41m	[m
+[32m+[m	[32m***查看各快照的ID（查看每次回滚或者操作的HEAD指向哪儿）：[m
+[32m+[m	[32mgit reflog   并且关闭git 隔天再打开都可以用[m
+[32m+[m[32m7.版本内容比较[m
+[32m+[m	[32m直接执行 git diff命令是比较暂存区和工作区的文件内容：[m
+[32m+[m	[32mdiff --git a/GitUse.txt b/GitUse.txt 表示对比的是存放在暂存区的GitUse.txt和放在工作区的GitUse.txt和放在工作区的GitUse[m
+[32m+[m	[32mindex 323432..q324324 表示对应的暂存区版本ID和工作区版本ID[m
+[32m+[m	[32m+号的绿色部分是新有的内容  灰色内容是共有内容[m
+[32m+[m	[32m@@-1,20 +1,28@@表示旧文件从第一行开始显示，显示20行， 新文件从狄航开始显示，显示28行[m
+[32m+[m	[32m：表示页面太小显示不下可以使用移动命令[m
+[32m+[m[32m8.移动命令[m
+[32m+[m	[32m下一行，上一行： j/k[m
+[32m+[m	[32m下一页，上一页：f/b[m
+[32m+[m	[32m跳转到开头，结尾：g/G   先输入3在输入g表示去第三行[m
+[41m+	[m
+[41m+	[m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+	[m
+[41m+	[m
+[41m+	[m
+[41m+[m
+[41m+[m
+[41m+[m
+[41m+	[m
+ 	[m
+ 	[m
