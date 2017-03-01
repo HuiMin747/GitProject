@@ -21,5 +21,30 @@ changes to be commited:
 	（use "git checkout -- <file>..." to discard changes in working directory）命令将旧的暂存区覆盖到新的工作区（危险，相当于丢弃了修改）
 5.add commit 一步到位的方法
 	在commit时加上 -a即可   git commit -a -m"..." 缩写为 git commit -am "..."
-
+6.回到过去的版本
+	从暂存区回退到工作区的命令：checkout
+	从仓库回退到暂存区的命令：reset
+		__add______ __commit___
+	   |		   |	       |
+	工作区------>暂存区----->仓库
+	   |_checkout__|___reset___|
+	   
+	git log命令查看历史提交：排序按时间从近到远 commit后面是每次提交生成的唯一ID 一般使用前5位就可以
+7.回滚快照
+	快照就是提交的版本，回滚快照就是回滚提交的版本
+	HEAD表示最新提交的快照 HEAD~表示HEAD的上一个快照 HEAD~~表示山上个  HEAD~10表示上上...*10个快照
+	git reset HEAD~ 就是将上一个快照变更成了最新快照，并将该快照回滚到了暂存区。
+	
+	在reset后面加上选项： --soft HEAD指向上一版本，而该版本不回滚到暂存区，相当于撤销最近一次的提交
+						  --hard  HEAD指向上一版本，该版本回滚到暂存区，还原到了工作区。
+						  
+	总结：1.移动HEAD的指向（--soft）
+		  2.将快照回滚到暂存区（[--mixed],默认）
+		  3.将暂存区还原到工作目录（--hard）
+		  
+	回滚到指定快照：  git reset 12345  至少ID前5位
+	回滚个别文件： 	  git reset 快照 文件名/路径
+	回滚到未来（往前滚）：只要知道指定快照的ID号就能往前滚
+	
+	
 	
