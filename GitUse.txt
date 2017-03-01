@@ -81,6 +81,16 @@ git use：
 	比较暂存区与仓库指定快照：
 	git diff  --cached <指定快照ID>
 	
+9.遇到乱码怎么办	
+	如果遇到乱码，是windows不团结导致的，用世界通用的UTF-8 无BOM格式即可：
+	使用Notepad++打开，文件-》转为UTF-8无BOM格式
+10.修改上次提交版本的说明
+	git commit --amend
+11.删除文件
+	如果自己在工作目录里误删了文件，可以打开git bash 查看状态， 然后用 checkout命令讲暂存区回滚到工作区
+	
+	
+	
 	
 	
 	
