@@ -3,4 +3,7 @@ git use：
 1.创建一个文件放到我的gitproject库里(repository head)
 2.将文件添加到暂存区（stage index）
 	git add README.md
+3.将文件提交到Git仓库
+	git commit -m "本次提交的说明"
+commit的意思是提交， -m选项后面是本次提交的说明，说明该版本的变动
 
