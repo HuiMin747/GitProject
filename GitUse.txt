@@ -1,0 +1,6 @@
+git use：
+//确定用户名和邮箱   创建一个仓库  具体命令在雨C的教程3里面
+1.创建一个文件放到我的gitproject库里(repository head)
+2.将文件添加到暂存区（stage index）
+	git add README.md
+
