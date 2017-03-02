@@ -96,7 +96,7 @@ git use：
 	切换分支：git checkout <分支名>
 	git log --graph --all 以图形化的形式显示分支的变化（很有意思很形象）
 	
-	
+	master***
 	
 	
 	
