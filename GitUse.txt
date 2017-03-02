@@ -88,6 +88,13 @@ git use：
 	git commit --amend
 11.删除文件
 	如果自己在工作目录里误删了文件，可以打开git bash 查看状态， 然后用 checkout命令讲暂存区回滚到工作区
+12.分支管理
+	master分支是默认分支，主分支
+	创建分支：git branch <分支名>  
+	git log --decorate 显示当前版本处于哪个分支
+	git log --oneline  log的精简版本  只显示一行主要的信息
+	切换分支：git checkout <分支名>
+	git log --graph --all 以图形化的形式显示分支的变化（很有意思很形象）
 	
 	
 	
