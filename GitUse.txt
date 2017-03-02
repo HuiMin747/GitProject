@@ -95,10 +95,8 @@ git use：
 	git log --oneline  log的精简版本  只显示一行主要的信息
 	切换分支：git checkout <分支名>
 	git log --graph --all 以图形化的形式显示分支的变化（很有意思很形象）
-	
-	
-	hhh
-	
+	合并分支：git merge <分支名>
+	将制定分支合并到本分支之中
 	
 	
 
